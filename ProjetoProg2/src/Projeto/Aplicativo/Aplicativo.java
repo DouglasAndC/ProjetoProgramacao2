@@ -8,16 +8,16 @@ public class Aplicativo {
     private String desenvolvedor;
     private int numeroDownloads;
     
-    public Aplicativo(long id, String nome, String desenvolvedor, int numeroDownloads){
-        this.id=id;
-        this.nome=nome;
-        this.desenvolvedor=desenvolvedor;
-        this.numeroDownloads=numeroDownloads;
+    public Aplicativo(){
+        this.id=-1;
+        this.nome="";
+        this.desenvolvedor="";
+        this.numeroDownloads=-1;
     }
     public long getId(){
         return this.id;
     }
-    public void setId(int id){
+    public void setId(Long id){
         this.id=id;
     }
     public String getNome(){
@@ -37,5 +37,12 @@ public class Aplicativo {
     }
     public void setNumeroDownloads(int numeroDownloads){
         this.numeroDownloads=numeroDownloads;
+    }
+    @Override
+    public String toString(){
+        return "[id: "+id+" ; "
+                + "desenvolvedor: "+desenvolvedor+" ; "
+                + "nome: "+nome+" ; "
+                + "numeroDownloads: "+numeroDownloads+"]";
     }
 }
