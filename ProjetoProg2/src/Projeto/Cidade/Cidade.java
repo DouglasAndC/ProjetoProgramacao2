@@ -11,11 +11,11 @@ public class Cidade {
     private long populacao;
 
     public Cidade(long id, String nome, String estado, String pais, long populacao) {
-        this.id = id;
-        this.nome = nome;
-        this.estado = estado;
-        this.pais = pais;
-        this.populacao = populacao;
+        this.id = -1;
+        this.nome = "";
+        this.estado = "";
+        this.pais = "";
+        this.populacao = -1;
     }
 
     public void setId(int id) {
@@ -58,4 +58,12 @@ public class Cidade {
         return this.populacao;
     }
 
+    @Override
+    public String toString(){
+        return "[id: "+id+" ; "
+                + "nome: "+nome+" ; "
+                + "estado: "+estado+" ; "
+                + "pais: "+pais+";" 
+                + "populacao: "+populacao+"]";
+    }
 }
