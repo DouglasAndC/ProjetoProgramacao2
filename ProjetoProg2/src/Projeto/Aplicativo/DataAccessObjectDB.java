@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Projeto.Aplicativo;
 
 import java.sql.Connection;
@@ -14,10 +9,6 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Douglas
- */
 public class DataAccessObjectDB implements DataAccessObject {
 
     public Connection getConnection() {
@@ -136,8 +127,9 @@ public class DataAccessObjectDB implements DataAccessObject {
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setLong(1, aplicativo.getId());
             pstm.executeUpdate();
+            return true;
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         }
         return false;
 
