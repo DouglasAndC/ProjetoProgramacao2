@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 interface DataAccessObject {
     public boolean create(Cidade cidade);
-    public String read(Long id);
+    public Cidade read(Long id);
     public ArrayList<Cidade> readAll();
     public boolean update(Cidade cidade);
     public boolean delete(Cidade cidade); 
