@@ -8,9 +8,9 @@ public class Cidade {
     private String nome;
     private String estado;
     private String pais;
-    private long populacao;
+    private int populacao;
 
-    public Cidade(long id, String nome, String estado, String pais, long populacao) {
+    public Cidade() {
         this.id = -1;
         this.nome = "";
         this.estado = "";
@@ -18,7 +18,7 @@ public class Cidade {
         this.populacao = -1;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -46,15 +46,15 @@ public class Cidade {
         this.pais = pais;
     }
 
-    public String getPais(String pais) {
+    public String getPais() {
         return this.pais;
     }
 
-    public void setPopulacao(long populacao) {
+    public void setPopulacao(int populacao) {
         this.populacao = populacao;
     }
 
-    public long getPopulacao() {
+    public int getPopulacao(){
         return this.populacao;
     }
 
