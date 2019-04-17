@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DataAccessObjectDB implements DataAccessObject {
 
@@ -46,7 +43,7 @@ public class DataAccessObjectDB implements DataAccessObject {
         }
         return false;
     }
-
+    @Override
     public Aplicativo read(Long id) {
         try {
             Connection conn = getConnection();
@@ -74,7 +71,7 @@ public class DataAccessObjectDB implements DataAccessObject {
         }
         return null;
     }
-
+    @Override
     public ArrayList<Aplicativo> readAll() {
         try {
             Connection conn = getConnection();
@@ -99,7 +96,7 @@ public class DataAccessObjectDB implements DataAccessObject {
         }
         return null;
     }
-
+    @Override
     public boolean update(Aplicativo aplicativo) {
         try {
             Connection conn = getConnection();
@@ -119,7 +116,7 @@ public class DataAccessObjectDB implements DataAccessObject {
 
         return false;
     }
-
+    @Override
     public boolean delete(Aplicativo aplicativo) {
         Connection conn = getConnection();
         String sql = "DELETE FROM aplicativos WHERE id=?";

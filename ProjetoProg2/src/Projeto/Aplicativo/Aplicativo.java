@@ -9,10 +9,10 @@ public class Aplicativo {
     private int numeroDownloads;
     
     public Aplicativo(){
-        this.id=-1;
+        this.id=0;
         this.nome="";
         this.desenvolvedor="";
-        this.numeroDownloads=-1;
+        this.numeroDownloads=0;
     }
     public long getId(){
         return this.id;

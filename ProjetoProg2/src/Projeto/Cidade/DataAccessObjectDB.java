@@ -10,10 +10,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -40,7 +37,7 @@ public class DataAccessObjectDB implements DataAccessObject{
         try {
 
             Connection conn = getConnection();
-            String sql = "INSERT INTO Cidades (id,nome,estado,pais,populacao) values (?,?,?,?,?)";
+            String sql = "INSERT INTO Cidade (id,nome,estado,pais,populacao) values (?,?,?,?,?)";
             PreparedStatement pstm = conn.prepareStatement(sql);
             pstm.setLong(1, cidade.getId());
             pstm.setString(2, cidade.getNome());
@@ -57,7 +54,7 @@ public class DataAccessObjectDB implements DataAccessObject{
         }
         return false;
     }
-
+    @Override
     public Cidade read(Long id) {
         try {
             Connection conn = getConnection();
@@ -87,6 +84,7 @@ public class DataAccessObjectDB implements DataAccessObject{
         return null;
     }
 
+    @Override
     public ArrayList<Cidade> readAll() {
         try {
             Connection conn = getConnection();
@@ -112,17 +110,17 @@ public class DataAccessObjectDB implements DataAccessObject{
         }
         return null;
     }
-
+    @Override
     public boolean update(Cidade cidade) {
         try {
             Connection conn = getConnection();
-            String sql = "UPDATE cidade SET nome=?, estado=?, pais=?, populacao=?, WHERE id=?";
+            String sql = "UPDATE cidade SET nome=?, estado=?, pais=?, populacao=? WHERE id=?";
             PreparedStatement pstm = conn.prepareStatement(sql);
-            pstm.setLong(1, cidade.getId());
-            pstm.setString(2, cidade.getNome());
-            pstm.setString(3, cidade.getEstado());
-            pstm.setString(4, cidade.getPais());
-            pstm.setInt(5, cidade.getPopulacao());
+            pstm.setString(1, cidade.getNome());
+            pstm.setString(2, cidade.getEstado());
+            pstm.setString(3, cidade.getPais());
+            pstm.setInt(4, cidade.getPopulacao());
+            pstm.setLong(5, cidade.getId());
             pstm.executeUpdate();
             pstm.close();
             conn.close();
@@ -133,7 +131,7 @@ public class DataAccessObjectDB implements DataAccessObject{
 
         return false;
     }
-
+    @Override
     public boolean delete(Cidade cidade) {
         Connection conn = getConnection();
         String sql = "DELETE FROM cidade WHERE id=?";

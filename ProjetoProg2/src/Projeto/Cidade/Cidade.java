@@ -11,11 +11,11 @@ public class Cidade {
     private int populacao;
 
     public Cidade() {
-        this.id = -1;
+        this.id = 0;
         this.nome = "";
         this.estado = "";
         this.pais = "";
-        this.populacao = -1;
+        this.populacao = 0;
     }
 
     public void setId(long id) {
