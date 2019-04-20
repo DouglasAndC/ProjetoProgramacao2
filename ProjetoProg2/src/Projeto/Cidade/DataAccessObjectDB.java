@@ -140,7 +140,7 @@ public class DataAccessObjectDB implements DataAccessObject{
             pstm.setLong(1, cidade.getId());
             pstm.executeUpdate();
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         }
         return false;
 
