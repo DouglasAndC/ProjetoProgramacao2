@@ -22,5 +22,6 @@ public class testeCidade {
         cidade.setPopulacao(1000);
         DaoDb.update(cidade);
         System.out.println(DaoDb.read((long)cidade.getId()));
+        System.out.println("finalizado");
     }
 }
