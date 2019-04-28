@@ -1,7 +1,7 @@
-Tue Apr 16 21:27:38 BRT 2019 : Apache Derby Servidor de Rede - 10.13.1.1 - (Unversioned directory) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+Sun Apr 21 23:00:33 BRT 2019 : Apache Derby Servidor de Rede - 10.13.1.1 - (Unversioned directory) iniciado e pronto para aceitar conexões na porta 1527 em {3}
 ----------------------------------------------------------------
-Tue Apr 16 21:27:40 BRT 2019:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instância a816c00e-016a-28b0-efed-ffffbc6951e4
+Sun Apr 21 23:00:34 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instância a816c00e-016a-42c5-d56c-ffffbc6951e4
 no diretório de banco de dados C:\Users\dougl\ProjetoProgramacao2\ProjetoProg2\DB\ProjetoProgramacaoSistemas 
 
 java.vendor=Oracle Corporation
@@ -12,3 +12,5 @@ os.arch=amd64
 os.version=10.0
 derby.system.home=C:\Users\dougl\ProjetoProgramacao2\ProjetoProg2\DB
 Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Sun Apr 21 23:06:40 BRT 2019: Shutting down Derby engine
