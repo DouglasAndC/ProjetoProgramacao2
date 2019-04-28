@@ -11,17 +11,13 @@ package Projeto.Cidade;
  */
 public class testeCidade {
     public static void main(String[] args) {
-        Cidade cidade = new Cidade();
-        DataAccessObject DaoDb = new DataAccessObjectDB();
-        DaoDb.delete(cidade);
-        DaoDb.create(cidade);
-        System.out.println(DaoDb.read((long)cidade.getId()));
-        cidade.setEstado("São Paulo");
-        cidade.setNome("São Paulo");
-        cidade.setPais("Brasil");
-        cidade.setPopulacao(1000);
-        DaoDb.update(cidade);
-        System.out.println(DaoDb.read((long)cidade.getId()));
-        System.out.println("finalizado");
+        Cidade cdd = new Cidade();
+        cdd.setId((long)2);
+        cdd.setNome("Sao Paulo");
+        cdd.setEstado("Sao Paulo");
+        cdd.setPais("Brasil");
+        cdd.setPopulacao(12000000);
+        DataAccessObject dao = new DataAccessObjectDB();
+        System.out.println(dao.read(cdd.getId()));
     }
 }
