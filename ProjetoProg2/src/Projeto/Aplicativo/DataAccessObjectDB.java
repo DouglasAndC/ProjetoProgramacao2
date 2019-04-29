@@ -38,17 +38,21 @@ public class DataAccessObjectDB implements DataAccessObject {
         }
     }
     @Override
-    public boolean create(Aplicativo aplicativo) {
+    public Aplicativo create(Aplicativo app) {
         try {
-            this.pstmC.setString(1, aplicativo.getDesenvolvedor());
-            this.pstmC.setString(2, aplicativo.getNome());
-            this.pstmC.setInt(3, aplicativo.getNumeroDownloads());
+            this.pstmC.setString(1, app.getDesenvolvedor());
+            this.pstmC.setString(2, app.getNome());
+            this.pstmC.setInt(3, app.getNumeroDownloads());
             this.pstmC.executeUpdate();
-            return true;
+            ResultSet rs = this.pstmC.getGeneratedKeys();
+            rs.next();
+            long id = rs.getLong(1);
+            app.setId(id);
+            return app;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -92,33 +96,31 @@ public class DataAccessObjectDB implements DataAccessObject {
     }
 
     @Override
-    public boolean update(Aplicativo aplicativo) {
+    public Aplicativo update(Aplicativo app) {
         try {
-
-            this.pstmU.setString(1, aplicativo.getDesenvolvedor());
-            this.pstmU.setString(2, aplicativo.getNome());
-            this.pstmU.setInt(3, aplicativo.getNumeroDownloads());
-            this.pstmU.setLong(4, aplicativo.getId());
+            this.pstmU.setString(1, app.getDesenvolvedor());
+            this.pstmU.setString(2, app.getNome());
+            this.pstmU.setInt(3, app.getNumeroDownloads());
+            this.pstmU.setLong(4, app.getId());
             this.pstmU.executeUpdate();
-
-            return true;
+            return app;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        return false;
+        return null;
     }
 
     @Override
-    public boolean delete(Aplicativo aplicativo) {
+    public Aplicativo delete(Aplicativo app) {
         try {
-            this.pstmD.setLong(1, aplicativo.getId());
+            this.pstmD.setLong(1, app.getId());
             this.pstmD.executeUpdate();
-            return true;
+            return app;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return false;
+        return null;
 
     }
 }
