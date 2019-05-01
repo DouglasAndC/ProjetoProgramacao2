@@ -48,18 +48,22 @@ public class DataAccessObjectDB implements DataAccessObject {
         }
     }
     @Override
-    public boolean create(Cidade cidade) {
+    public Cidade create(Cidade cdd) {
         try {
-            this.pstmC.setString(1, cidade.getNome());
-            this.pstmC.setString(2, cidade.getEstado());
-            this.pstmC.setString(3, cidade.getPais());
-            this.pstmC.setInt(4, cidade.getPopulacao());
+            this.pstmC.setString(1, cdd.getNome());
+            this.pstmC.setString(2, cdd.getEstado());
+            this.pstmC.setString(3, cdd.getPais());
+            this.pstmC.setInt(4, cdd.getPopulacao());
             this.pstmC.executeUpdate();
-            return true;
+            ResultSet rs = this.pstmC.getGeneratedKeys();
+            rs.next();
+            long id = rs.getLong(1);
+            cdd.setId(id);
+            return cdd;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return false;
+        return null;
     }
     @Override
     public Cidade read(Long id) {
@@ -102,7 +106,7 @@ public class DataAccessObjectDB implements DataAccessObject {
         return null;
     }
     @Override
-    public boolean update(Cidade cidade) {
+    public Cidade update(Cidade cidade) {
            try {
             this.pstmU.setString(1, cidade.getNome());
             this.pstmU.setString(2, cidade.getEstado());
@@ -112,23 +116,23 @@ public class DataAccessObjectDB implements DataAccessObject {
             
             this.pstmU.executeUpdate();
 
-            return true;
+            return cidade;
         }catch (Exception ex) {
             ex.printStackTrace();
         }
 
-        return false;
+        return null;
     }
     @Override
-    public boolean delete(Cidade cidade) {
+    public Cidade delete(Cidade cidade) {
         try {
             this.pstmD.setLong(1, cidade.getId());
             this.pstmD.executeUpdate();
-            return true;
+            return cidade;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return false;
+        return null;
 
     }
 }

@@ -17,7 +17,12 @@ public class testeCidade {
         cdd.setEstado("Sao Paulo");
         cdd.setPais("Brasil");
         cdd.setPopulacao(12000000);
+        
         DataAccessObject dao = new DataAccessObjectDB();
+        dao.create(cdd);
         System.out.println(dao.read(cdd.getId()));
+        System.out.println(dao.readAll());
+        System.out.println(cdd);
+        dao.close();
     }
 }
