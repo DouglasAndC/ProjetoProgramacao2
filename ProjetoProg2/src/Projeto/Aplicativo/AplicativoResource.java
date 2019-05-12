@@ -31,7 +31,33 @@ public class AplicativoResource {
     }
     @PUT
     @Path("{id}")
-    public Aplicativo update(@PathParam("id") LongParam id,Aplicativo app){
+    public Aplicativo update(@PathParam("id") LongParam id, Aplicativo app) {
+        for (Aplicativo aplicativo: dao.readAll()) {
+            if (aplicativo.getId() == id.get()) {
+                aplicativo.setNome(app.getNome());
+                aplicativo.setId(app.getId());
+                return aplicativo;
+            }
+        }
         return null;
+    }
+    @DELETE
+    @Path("{id}")
+    public Response delete(@PathParam("id") LongParam id) {
+        Aplicativo p = null;
+        for (Aplicativo aplicativo: dao.readAll()) {
+            if (aplicativo.getId() == id.get()) {
+                p = aplicativo;
+                break;
+            }
+        }
+        if (p != null) { 
+            dao.delete(p);
+        }
+        else {
+            throw new WebApplicationException("Aplicativo com id=" + id.get() 
+                                              + " não encontrado!", 404);
+        }
+        return Response.ok().build();
     }
 }
