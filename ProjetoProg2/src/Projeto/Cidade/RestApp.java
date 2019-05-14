@@ -18,9 +18,9 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class RestCdd extends Application<Configuration> {
+public class RestApp extends Application<Configuration> {
     public static void main(String[] args) throws Exception {
-        new RestCdd().run(new String[] { "server" });
+        new RestApp().run(new String[] { "server" });
         
         
     }
