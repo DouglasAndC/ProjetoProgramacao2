@@ -12,16 +12,9 @@ package Projeto.Aplicativo;
 public class testeAplicativo {
     public static void main(String[] args) {
         Aplicativo app = new Aplicativo();
-        app.setId((long)12321);
-        app.setDesenvolvedor("Douglas");
-        app.setNome("app prog2");
+        app.setId((long)12);
+        app.setDesenvolvedor("DouglasA");
+        app.setNome("app prog3");
         app.setNumeroDownloads(10);
-        
-        DataAccessObjectDB dao = new DataAccessObjectDB();
-        dao.create(app);
-        System.out.println(dao.read(app.getId()));
-        System.out.println(dao.readAll());
-        System.out.println(app);
-        dao.close();
     }
 }
