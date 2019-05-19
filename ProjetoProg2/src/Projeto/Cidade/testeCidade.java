@@ -1,19 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Projeto.Cidade;
 
-/**
- *
- * @author Douglas
- */
 public class testeCidade {
     public static void main(String[] args) {
         Cidade cdd = new Cidade();
-        cdd.setId((long)2);
-        cdd.setNome("Sao Paulo");
+        cdd.setId((long)3);
+        cdd.setNome("Campinas");
         cdd.setEstado("Sao Paulo");
         cdd.setPais("Brasil");
         cdd.setPopulacao(12000000);
@@ -22,7 +14,6 @@ public class testeCidade {
         dao.create(cdd);
         System.out.println(dao.read(cdd.getId()));
         System.out.println(dao.readAll());
-        System.out.println(cdd);
         dao.close();
     }
 }

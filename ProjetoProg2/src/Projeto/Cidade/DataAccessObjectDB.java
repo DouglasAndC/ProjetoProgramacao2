@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Projeto.Cidade;
 
 
@@ -13,10 +9,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- *
- * @author mateus
- */
 public class DataAccessObjectDB implements DataAccessObject {
     private PreparedStatement pstmC;
     private PreparedStatement pstmR;
@@ -29,7 +21,7 @@ public class DataAccessObjectDB implements DataAccessObject {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
             this.conn = DriverManager.getConnection("jdbc:derby://localhost:1527/ProjetoProgramacaoSistemas","projeto","projeto");
-             this.pstmC = this.conn.prepareStatement("INSERT INTO Cidade (id,nome,estado,pais,populacao) values (?,?,?,?,?)",
+            this.pstmC = this.conn.prepareStatement("INSERT INTO Cidade (nome,estado,pais,populacao) values (?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);        
             this.pstmR = this.conn.prepareStatement("Select * FROM cidade WHERE id=?");
             this.pstmRall = this.conn.prepareStatement("Select * FROM cidade");
@@ -56,9 +48,14 @@ public class DataAccessObjectDB implements DataAccessObject {
             this.pstmC.setInt(4, cdd.getPopulacao());
             this.pstmC.executeUpdate();
             ResultSet rs = this.pstmC.getGeneratedKeys();
-            rs.next();
+            
+            if(!rs.next())
+                return null;
+            
             long id = rs.getLong(1);
+            
             cdd.setId(id);
+            
             return cdd;
         } catch (Exception ex) {
             ex.printStackTrace();

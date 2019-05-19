@@ -7,7 +7,7 @@ import io.dropwizard.jersey.params.*;
 import java.util.*;
 
 
-@Path("/Aplicativos")
+@Path("/Cidades")
 @Produces(MediaType.APPLICATION_JSON)
 public class CidadeResource {
     private DataAccessObjectDB dao;

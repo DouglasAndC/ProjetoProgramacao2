@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Cidade (read)</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css" type="text/css">
+</head>
+
+<body>
+	<p><a href="/site">&lt; Voltar para página inicial</a></p>
+	<h1>Cidade</h1>
+	<p style="font-weight:bold" id="contador"></p>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>Estado</th>
+			<th>Pais</th>
+			<th>População</th>
+		</tr>
+		<tbody id="cidade">
+		</tbody>
+	</table>
+	<script>
+		const corpoTabela = document.querySelector('#cidade');
+		const contadorParagraph = document.querySelector('#contador');
+		function preencherTabela(cidades) {
+			var linhasTabela = '';
+			var n = cidades.length;
+			for (var i = 0; i < n; i++) {
+				var cidade = cidades[i];
+				linhasTabela += '<tr><td>' + cidades.id + '</td>' +
+					'<td>' + cidade.nome + '</td>' +
+					'<td>' + cidade.estado + '</td>' +
+					'<td>' + cidade.pais + '</td>' +
+					'<td>' + cidade.populacao + '</td></tr>\n'
+					;
+			}
+			corpoTabela.innerHTML = linhasTabela;
+			contadorParagraph.innerHTML = n + ' ' + (n == 1 ? 'cidade' : 'cidades');
+		}
+		async function listarTodasCidades() {
+			const URL = `/api/Cidades`;
+			try {
+				fetch(URL).then(resposta => resposta.json()).then(jsonResponse => preencherTabela(jsonResponse));
+			} catch (e) {
+				corpoTabela.innerHTML = e;
+			}
+		}
+		listarTodasCidades();
+	</script>
+</body>
+
+</html>

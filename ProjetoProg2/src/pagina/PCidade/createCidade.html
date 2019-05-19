@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cidade (create)</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css">
+</head>
+
+<body>
+    <p><a href="/site">&lt; Voltar para página inicial</a></p>
+    <h1>Novo Cidade</h1>
+    <table>
+        <tr>
+            <td>Nome:</td>
+            <td><input type="text" id="txtNome"></td>
+        </tr>
+        <tr>
+            <td>Estado:</td>
+            <td><input type="text" id="txtEstado"></td>
+        </tr>
+        <tr>
+            <td>Pais:</td>
+            <td><input type="text" id="txtPais"></td>
+        </tr>
+        <tr>
+            <td>População:</td>
+            <td><input type="text" id="txtPopulacao"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" onclick="criarCidade()" value="Criar"></td>
+        </tr>
+    </table>
+    <p style="font-weight:bold" id="mensagem"></p>
+    <script>
+        const textoNome = document.querySelector('#txtNome');
+        const textoEstado = document.querySelector('#txtEstado');
+        const textoPais = document.querySelector('#txtPais');
+        const textoPopulacao = document.querySelector('#txtPopulacao');
+        const paragrafoMensagem = document.querySelector('#mensagem');
+        function mostrarMensagem(cidadeCadastrado) {
+            textoNome.value = '';
+            textoEstado.value = '';
+            textoPais.value = '';
+            textoPopulacao.value = '';
+            paragrafoMensagem.innerHTML = 'Cidade criada com id ' + cidadeCadastrado.id;
+        }
+        async function criarCidade() {
+            const URL = `/api/Cidades`;
+            const dadosCidade = {
+                'nome': textoNome.value,
+                'estado': textoEstado.value,
+                'pais': textoPais.value,
+                'populacao': textoPopulacao.value
+            };
+            const postRequest = {
+                method: 'POST',
+                body: JSON.stringify(dadosCidade),
+                headers: { 'Content-type': 'application/json;charset=UTF-8' }
+            };
+            try {
+                fetch(URL, postRequest).then(resposta => resposta.json()).then(jsonResponse => mostrarMensagem(jsonResponse));
+            } catch (e) {
+                corpoTabela.innerHTML = e;
+            }
+        }
+    </script>
+</body>
+
+</html>
