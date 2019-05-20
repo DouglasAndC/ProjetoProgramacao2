@@ -47,6 +47,11 @@
             paragrafoMensagem.innerHTML = 'Cidade criada com id ' + cidadeCadastrado.id;
         }
         async function criarCidade() {
+			if(textoNome.value==''||textoEstado.value==''||textoPais.value==''||textoPopulacao.value==''){
+				paragrafoMensagem.innerHTML = 'Campo não preenchido';
+				return null;
+			}
+				
             const URL = `/api/Cidades`;
             const dadosCidade = {
                 'nome': textoNome.value,

@@ -4,7 +4,7 @@
 <head>
     <title>Cidade (delete)</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css">
 </head>
 
 <body>
@@ -22,15 +22,15 @@
         <tr>
         <tr>
             <td>Estado:</td>
-            <td id="estadoCidade"></td>
+            <td id="nomeEstado"></td>
         </tr>
         <tr>
             <td>Pais:</td>
-            <td id="paisCidade"></td>
+            <td id="nomePais"></td>
         </tr>
         <tr>
             <td>Populacao:</td>
-            <td id="populacaoCidade"></td>
+            <td id="nomePopulacao"></td>
         </tr>
         <tr>
             <td></td>
@@ -70,7 +70,7 @@
             listarTodosCidades();
         }
         function selecionarCidade(id, nome, estado, pais, populacao) {
-            paragrafoMensagem.innerHTML = 'Pressione o botão Apagar para remover o professor.'
+            paragrafoMensagem.innerHTML = 'Pressione o botão Apagar para remover a cidade.'
             celulaID.innerHTML = id;
             celulaNome.innerHTML = nome;
             celulaEstado.innerHTML = estado;
@@ -80,7 +80,7 @@
         async function apagarCidade() {
             if (celulaID.innerHTML == '') return;
             const ID = celulaID.innerHTML;
-            const URL = `/api/cidade/${ID}`;
+            const URL = `/api/Cidades/${ID}`;
             const deleteRequest = {
                 method: 'DELETE'
             };
@@ -90,9 +90,9 @@
                 corpoTabela.innerHTML = e;
             }
         }
-        function preencherTabela(cidade) {
+        function preencherTabela(cidades) {
             var linhasTabela = '';
-            var n = cidade.length;
+            var n = cidades.length;
             for (var i = 0; i < n; i++) {
                 var cidade = cidades[i];
                 linhasTabela +=
@@ -106,7 +106,7 @@
             corpoTabela.innerHTML = linhasTabela;
         }
         async function listarTodosCidades() {
-            const URL = `/api/cidade`;
+            const URL = `/api/Cidades`;
             try {
                 fetch(URL).then(resposta => resposta.json()).then(jsonResponse => preencherTabela(jsonResponse));
             } catch (e) {

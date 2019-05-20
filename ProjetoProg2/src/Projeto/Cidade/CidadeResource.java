@@ -39,6 +39,7 @@ public class CidadeResource {
                 cidade.setPais(cdd.getPais());
                 cidade.setPopulacao(cdd.getPopulacao());
                 cidade.setId(cdd.getId());
+                dao.update(cidade);
                 return cidade;
             }
         }

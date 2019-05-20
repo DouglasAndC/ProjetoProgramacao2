@@ -4,7 +4,7 @@
 <head>
     <title>Cidade (update)</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura.css">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css">
 </head>
 
 <body>
@@ -57,13 +57,13 @@
         const textoPopulacao = document.querySelector('#txtPopulacao');
         const celulaID = document.querySelector('#idCidade');
         function inicializar() {
-            paragrafoMensagem.innerHTML = 'Selecione um professor:'
+            paragrafoMensagem.innerHTML = 'Selecione uma Cidade:'
             celulaID.innerHTML = '';
             textoNome.value = '';
             textoEstado.value = '';
             textoPais.value = '';
             textoPopulacao.value = '';
-            listarTodosProfessores();
+            listarTodasAsCidades();
         }
         function selecionarCidade(id, nome, estado, pais, populacao) {
             paragrafoMensagem.innerHTML = 'Altere os dados da cidade e pressione o botão Salvar.'
@@ -76,7 +76,7 @@
         async function atualizarCidade() {
             if (celulaID.innerHTML == '') return;
             const ID = celulaID.innerHTML;
-            const URL = `/api/cidade/${ID}`;
+            const URL = `/api/Cidades/${ID}`;
             const dadosCidade = {
                 'id': ID,
                 'nome': textoNome.value,
@@ -86,7 +86,7 @@
             };
             const putRequest = {
                 method: 'PUT',
-                body: JSON.stringify(dadosProfessor),
+                body: JSON.stringify(dadosCidade),
                 headers: { 'Content-type': 'application/json;charset=UTF-8' }
             };
             try {
@@ -95,11 +95,11 @@
                 corpoTabela.innerHTML = e;
             }
         }
-        function preencherTabela(cidade) {
+        function preencherTabela(cidades) {
             var linhasTabela = '';
-            var n = cidade.length;
+            var n = cidades.length;
             for (var i = 0; i < n; i++) {
-                var cidade = cidade[i];
+                var cidade = cidades[i];
                 linhasTabela +=
                     `<tr><td><a href="javascript:void(0)" onclick="selecionarCidade('${cidade.id}','${cidade.nome}','${cidade.estado}','${cidade.pais}','${cidade.populacao}')">`
                     + cidade.id + '</a></td>' +
@@ -110,8 +110,8 @@
             }
             corpoTabela.innerHTML = linhasTabela;
         }
-        async function listarTodosCidades() {
-            const URL = `/api/cidade`;
+        async function listarTodasAsCidades() {
+            const URL = `/api/Cidades`;
             try {
                 fetch(URL).then(resposta => resposta.json()).then(jsonResponse => preencherTabela(jsonResponse));
             } catch (e) {
