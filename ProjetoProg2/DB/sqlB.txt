@@ -1,0 +1,17 @@
+DROP TABLE APLICATIVOS;
+CREATE TABLE aplicativos(
+    id BIGINT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
+    desenvolvedor varchar(255) NOT NULL,
+    nome varchar(255) NOT NULL,
+    numerodownloads INT NOT NULL,
+    PRIMARY KEY(id)
+);
+DROP TABLE CIDADE;
+CREATE TABLE cidade(
+    id BIGINT NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
+    nome varchar(255)NOT NULL,
+    estado varchar(255)NOT NULL,
+    pais varchar(255)NOT NULL,
+    populacao INT NOT NULL,
+    PRIMARY KEY(id)
+);
