@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aplicativo (delete)</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css">
+</head>
+
+<body>
+    <p><a href="IndexAplicativo.html">&lt; Voltar para página inicial</a></p>
+    <h1>Apagar Aplicativo</h1>
+    <table>
+        <tr>
+        </tr>
+        <td>ID:</td>
+        <td id="idAplicativo"></td>
+        <tr>
+            <td>Nome:</td>
+            <td id="nomeAplicativo"></td>
+        </tr>
+        <tr>
+        <tr>
+            <td>Desenvolvedor:</td>
+            <td id="desenvolvedor"></td>
+        </tr>
+        <tr>
+            <td>Número de Downloads:</td>
+            <td id="numeroDownloads"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" onclick="apagarAplicativo()" value="Apagar"></td>
+        </tr>
+    </table>
+    <p style="font-weight:bold" id="mensagem"></p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Desenvolvedor</th>
+            <th>Número de Downloads</th>
+        </tr>
+        <tbody id="aplicativo">
+        </tbody>
+    </table>
+    <script>
+        const corpoTabela = document.querySelector('#aplicativo');
+        const paragrafoMensagem = document.querySelector('#mensagem');
+        const celulaNome = document.querySelector('#nomeAplicativo');
+        const celulaDesenvolvedor = document.querySelector('#desenvolvedor');
+        const celulaNumeroDownloads = document.querySelector('#numeroDownloads');
+        const celulaID = document.querySelector('#idAplicativo');
+        function inicializar() {
+            paragrafoMensagem.innerHTML = 'Selecione uma aplicativo:'
+            celulaID.innerHTML = '';
+            celulaNome.innerHTML = '';
+            celulaDesenvolvedor.innerHTML = '';
+            celulaNumeroDownloads.innerHTML = '';
+            listarTodosAplicativos();
+        }
+        function selecionarAplicativos(id, nome, desenvolvedor, numeroDownloads) {
+            paragrafoMensagem.innerHTML = 'Pressione o botão Apagar para remover o aplicativo.'
+            celulaID.innerHTML = id;
+            celulaNome.innerHTML = nome;
+            celulaDesenvolvedor.innerHTML = desenvolvedor;
+            celulaNumeroDownloads.innerHTML = numeroDownloads;
+        }
+        async function apagarAplicativo() {
+            if (celulaID.innerHTML == '') return;
+            const ID = celulaID.innerHTML;
+            const URL = `/api/Aplicativos/${ID}`;
+            const deleteRequest = {
+                method: 'DELETE'
+            };
+            try {
+                fetch(URL, deleteRequest).then(resposta => inicializar());
+            } catch (e) {
+                corpoTabela.innerHTML = e;
+            }
+        }
+        function preencherTabela(aplicativos) {
+            var linhasTabela = '';
+            var n = aplicativos.length;
+            for (var i = 0; i < n; i++) {
+                var aplicativo = aplicativos[i];
+                linhasTabela +=
+                    `<tr><td><a href="javascript:void(0)" onclick="selecionarAplicativos('${aplicativo.id}','${aplicativo.nome}','${aplicativo.desenvolvedor}','${aplicativo.numeroDownloads}')">`
+                    + aplicativo.id + '</a></td>' +
+                    '<td>' + aplicativo.nome + '</td>' +
+                    '<td>' + aplicativo.desenvolvedor + '</td>' +
+                    '<td>' + aplicativo.numeroDownloads + '</td></tr>\n';
+            }
+            corpoTabela.innerHTML = linhasTabela;
+        }
+        async function listarTodosAplicativos() {
+            const URL = `/api/Aplicativos`;
+            try {
+                fetch(URL).then(resposta => resposta.json()).then(jsonResponse => preencherTabela(jsonResponse));
+            } catch (e) {
+                corpoTabela.innerHTML = e;
+            }
+        }
+        inicializar();
+    </script>
+</body>
+
+</html>

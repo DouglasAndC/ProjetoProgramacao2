@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Aplicativo (read)</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css" type="text/css">
+</head>
+
+<body>
+	<p><a href="IndexAplicativo.html">&lt; Voltar para página inicial</a></p>
+	<h1>Aplicativo</h1>
+	<p style="font-weight:bold" id="contador"></p>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Nome</th>
+			<th>Desenvolvedor</th>
+			<th>Número de Downloads</th>
+		</tr>
+		<tbody id="Aplicativo">
+		</tbody>
+	</table>
+	<script>
+		const corpoTabela = document.querySelector('#Aplicativo');
+		const contadorParagraph = document.querySelector('#contador');
+		function preencherTabela(aplicativos) {
+			var linhasTabela = '';
+			var n = aplicativos.length;
+			for (var i = 0; i < n; i++) {
+				var aplicativo = aplicativos[i];
+				linhasTabela += '<tr><td>' + aplicativo.id + '</td>' +
+					'<td>' + aplicativo.nome + '</td>' +
+					'<td>' + aplicativo.desenvolvedor + '</td>' +
+					'<td>' + aplicativo.numeroDownloads + '</td></tr>\n';
+			}
+			corpoTabela.innerHTML = linhasTabela;
+			contadorParagraph.innerHTML = n + ' ' + (n == 1 ? 'aplicativo' : 'aplicativos');
+		}
+		async function listarTodosAplicativos() {
+			const URL = `/api/Aplicativos`;
+			try {
+				fetch(URL).then(resposta => resposta.json()).then(jsonResponse => preencherTabela(jsonResponse));
+			} catch (e) {
+				corpoTabela.innerHTML = e;
+			}
+		}
+		listarTodosAplicativos();
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aplicativo (create)</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css">
+</head>
+
+<body>
+    <p><a href="IndexAplicativo.html">&lt; Voltar para página inicial</a></p>
+    <h1>Novo Aplicativo</h1>
+    <table>
+        <tr>
+            <td>Nome:</td>
+            <td><input type="text" id="txtNome"></td>
+        </tr>
+        <tr>
+            <td>Desenvolvedor:</td>
+            <td><input type="text" id="txtDesenvolvedor"></td>
+        </tr>
+        <tr>
+            <td>Número de Downloads:</td>
+            <td><input type="text" id="txtNumeroDownloads"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" onclick="criarAplicativo()" value="Criar"></td>
+        </tr>
+    </table>
+    <p id="mensagem"></p>
+    <script>
+        const textoNome = document.querySelector('#txtNome');
+        const textoDesenvolvedor = document.querySelector('#txtDesenvolvedor');
+        const textoNumeroDownloads = document.querySelector('#txtNumeroDownloads');
+        const paragrafoMensagem = document.querySelector('#mensagem');
+        function mostrarMensagem(AplicativoCadastrado) {
+            textoNome.value = '';
+            textoDesenvolvedor.value = '';
+            textoNumeroDownloads.value = '';
+            paragrafoMensagem.innerHTML = 'Aplicativo criado com id: ' + AplicativoCadastrado.id;
+        }
+        async function criarAplicativo() {
+			if(textoNome.value==''||textoDesenvolvedor.value==''||textoNumeroDownloads.value==''){
+				paragrafoMensagem.innerHTML = 'Preencha todos os campos!';
+				return null;
+			}
+				
+            const URL = `/api/Aplicativos`;
+            const dadosAplicativo = {
+                'nome': textoNome.value,
+                'desenvolvedor': textoDesenvolvedor.value,
+                'numeroDownloads': textoNumeroDownloads.value
+            };
+            const postRequest = {
+                method: 'POST',
+                body: JSON.stringify(dadosAplicativo),
+                headers: { 'Content-type': 'application/json;charset=UTF-8' }
+            };
+            try {
+                fetch(URL, postRequest).then(resposta => resposta.json()).then(jsonResponse => mostrarMensagem(jsonResponse));
+            } catch (e) {
+                corpoTabela.innerHTML = e;
+            }
+        }
+    </script>
+</body>
+
+</html>

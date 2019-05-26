@@ -16,5 +16,7 @@ public class testeAplicativo {
         app.setDesenvolvedor("DouglasA");
         app.setNome("app prog3");
         app.setNumeroDownloads(10);
+        DataAccessObjectDB db = new DataAccessObjectDB();
+        db.create(app);
     }
 }

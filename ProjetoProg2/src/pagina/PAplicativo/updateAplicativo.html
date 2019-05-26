@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aplicativo (update)</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/sakura.css/css/sakura-dark.css">
+</head>
+
+<body>
+    <p><a href="IndexAplicativo.html">&lt; Voltar para página inicial</a></p>
+    <h1>Atualizar Aplicativo</h1>
+    <table>
+        <tr>
+        </tr>
+        <td>ID:</td>
+        <td id="idAplicativo"></td>
+        <tr>
+            <td>Nome:</td>
+            <td><input type="text" id="txtNome"></td>
+        </tr>
+        <tr>
+            <td>Desenvolvedor:</td>
+            <td><input type="text" id="txtDesenvolvedor"></td>
+        </tr>
+        <tr>
+            <td>Número de Downloads:</td>
+            <td><input type="text" id="txtNumeroDownloads"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="button" onclick="atualizarAplicativo()" value="Salvar"></td>
+        </tr>
+    </table>
+    <p style="font-weight:bold" id="mensagem"></p>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Desenvolvedor</th>
+            <th>Número de Downloads</th>
+        </tr>
+        <tbody id="aplicativo">
+        </tbody>
+    </table>
+    <script>
+        const corpoTabela = document.querySelector('#aplicativo');
+        const paragrafoMensagem = document.querySelector('#mensagem');
+        const textoNome = document.querySelector('#txtNome');
+        const textoDesenvolvedor = document.querySelector('#txtDesenvolvedor');
+        const textoNumeroDownloads = document.querySelector('#txtNumeroDownloads');
+        const celulaID = document.querySelector('#idAplicativo');
+        function inicializar() {
+            paragrafoMensagem.innerHTML = 'Selecione um Aplicativo:'
+            celulaID.innerHTML = '';
+            textoNome.value = '';
+            textoDesenvolvedor.value = '';
+            textoNumeroDownloads.value = '';
+            listarTodosOsAplicativos();
+        }
+        function selecionarAplicativo(id, nome, desenvolvedor, numeroDownloads) {
+            paragrafoMensagem.innerHTML = 'Altere os dados do Aplicativo e pressione o botão Salvar.'
+            celulaID.innerHTML = id;
+            textoNome.value = nome;
+            textoDesenvolvedor.value = desenvolvedor;
+            textoNumeroDownloads.value = numeroDownloads;
+        }
+        async function atualizarAplicativo() {
+            if (celulaID.innerHTML == '') return;
+            const ID = celulaID.innerHTML;
+            const URL = `/api/Aplicativos/${ID}`;
+            const dadosAplicativo = {
+                'id': ID,
+                'nome': textoNome.value,
+                'Desenvolvedor': textoDesenvolvedor.value,
+                'numeroDownloads': textoNumeroDownloads.value
+            };
+            const putRequest = {
+                method: 'PUT',
+                body: JSON.stringify(dadosAplicativo),
+                headers: { 'Content-type': 'application/json;charset=UTF-8' }
+            };
+            try {
+                fetch(URL, putRequest).then(resposta => resposta.json()).then(jsonResponse => inicializar());
+            } catch (e) {
+                corpoTabela.innerHTML = e;
+            }
+        }
+        function preencherTabela(aplicativos) {
+            var linhasTabela = '';
+            var n = aplicativos.length;
+            for (var i = 0; i < n; i++) {
+                var aplicativo = aplicativos[i];
+                linhasTabela +=
+                    `<tr><td><a href="javascript:void(0)" onclick="selecionarAplicativo('${aplicativo.id}','${aplicativo.nome}','${aplicativo.desenvolvedor}','${aplicativo.numeroDownloads})">`
+                    + aplicativo.id + '</a></td>' +
+                    '<td>' + aplicativo.nome + '</td>' +
+                    '<td>' + aplicativo.desenvolvedor + '</td>' +
+                    '<td>' + aplicativo.numeroDownloads + '</td></tr>\n';
+            }
+            corpoTabela.innerHTML = linhasTabela;
+        }
+        async function listarTodosOsAplicativos() {
+            const URL = `/api/Aplicativos`;
+            try {
+                fetch(URL).then(resposta => resposta.json()).then(jsonResponse => preencherTabela(jsonResponse));
+            } catch (e) {
+                corpoTabela.innerHTML = e;
+            }
+        }
+        inicializar();
+    </script>
+</body>
+
+</html>

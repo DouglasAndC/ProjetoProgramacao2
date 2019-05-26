@@ -45,7 +45,9 @@ public class DataAccessObjectDB implements DataAccessObject {
             this.pstmC.setInt(3, app.getNumeroDownloads());
             this.pstmC.executeUpdate();
             ResultSet rs = this.pstmC.getGeneratedKeys();
-            rs.next();
+            
+            if(rs.next())
+                return null;
             long id = rs.getLong(1);
             app.setId(id);
             return app;
