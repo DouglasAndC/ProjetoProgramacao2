@@ -46,11 +46,15 @@ public class DataAccessObjectDB implements DataAccessObject {
             this.pstmC.executeUpdate();
             ResultSet rs = this.pstmC.getGeneratedKeys();
             
-            if(rs.next())
+            if(!rs.next())
                 return null;
+            
             long id = rs.getLong(1);
+            
             app.setId(id);
+            
             return app;
+            
         } catch (Exception ex) {
             ex.printStackTrace();
         }

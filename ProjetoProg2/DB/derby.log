@@ -1,7 +1,41 @@
-Sun May 19 21:50:29 BRT 2019 : Apache Derby Servidor de Rede - 10.13.1.1 - (Unversioned directory) iniciado e pronto para aceitar conexões na porta 1527 em {3}
+Tue May 28 23:24:11 BRT 2019 : Apache Derby Servidor de Rede - 10.13.1.1 - (Unversioned directory) iniciado e pronto para aceitar conexões na porta 1527 em {3}
 ----------------------------------------------------------------
-Sun May 19 21:50:39 BRT 2019:
- Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instância a816c00e-016a-d2b7-c19b-ffffbc6951e4
+Tue May 28 23:24:12 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instância a816c00e-016b-0166-c951-ffffbc6951e4
+no diretório de banco de dados C:\Users\dougl\ProjetoProgramacao2\ProjetoProg2\DB\ProjetoProgramacaoSistemas 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_111-b14
+user.dir=C:\Program Files\glassfish-5.0\glassfish5\javadb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\dougl\ProjetoProgramacao2\ProjetoProg2\DB
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Tue May 28 23:29:43 BRT 2019:
+Encerrando a instância a816c00e-016b-0166-c951-ffffbc6951e4
+Tue May 28 23:29:43 BRT 2019 Thread[DRDAConnThread_4,5,main] (DATABASE = ProjetoProgramacaoSistemas), (DRDAID = {7}), Banco de dados 'ProjetoProgramacaoSistemas' fechado.
+----------------------------------------------------------------
+Tue May 28 23:30:23 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instância fe120070-016b-0166-c951-ffffbc6951e4
+no diretório de banco de dados C:\Users\dougl\ProjetoProgramacao2\ProjetoProg2\DB\ProjetoProgramacaoSistemas 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_111-b14
+user.dir=C:\Program Files\glassfish-5.0\glassfish5\javadb
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=C:\Users\dougl\ProjetoProgramacao2\ProjetoProg2\DB
+Carregador de classe do banco de dados iniciado - derby.database.classpath=''
+----------------------------------------------------------------
+Tue May 28 23:30:32 BRT 2019:
+Encerrando a instância fe120070-016b-0166-c951-ffffbc6951e4
+Tue May 28 23:30:33 BRT 2019 Thread[DRDAConnThread_4,5,main] (DATABASE = ProjetoProgramacaoSistemas), (DRDAID = {9}), Banco de dados 'ProjetoProgramacaoSistemas' fechado.
+----------------------------------------------------------------
+Tue May 28 23:30:51 BRT 2019:
+ Inicializando o Derby versão The Apache Software Foundation - Apache Derby - 10.13.1.1 - (Unversioned directory): instância a4420111-016b-0166-c951-ffffbc6951e4
 no diretório de banco de dados C:\Users\dougl\ProjetoProgramacao2\ProjetoProg2\DB\ProjetoProgramacaoSistemas 
 
 java.vendor=Oracle Corporation

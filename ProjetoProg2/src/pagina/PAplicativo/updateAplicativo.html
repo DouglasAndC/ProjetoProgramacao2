@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="button" onclick="atualizarAplicativo()" value="Salvar"></td>
+            <td rowspan="2"><input type="button" onclick="atualizarAplicativo()" value="Salvar"></td>
         </tr>
     </table>
     <p style="font-weight:bold" id="mensagem"></p>
@@ -72,7 +72,7 @@
             const dadosAplicativo = {
                 'id': ID,
                 'nome': textoNome.value,
-                'Desenvolvedor': textoDesenvolvedor.value,
+                'desenvolvedor': textoDesenvolvedor.value,
                 'numeroDownloads': textoNumeroDownloads.value
             };
             const putRequest = {
@@ -92,7 +92,7 @@
             for (var i = 0; i < n; i++) {
                 var aplicativo = aplicativos[i];
                 linhasTabela +=
-                    `<tr><td><a href="javascript:void(0)" onclick="selecionarAplicativo('${aplicativo.id}','${aplicativo.nome}','${aplicativo.desenvolvedor}','${aplicativo.numeroDownloads})">`
+                    `<tr><td><a href="javascript:void(0)" onclick="selecionarAplicativo('${aplicativo.id}','${aplicativo.nome}','${aplicativo.desenvolvedor}','${aplicativo.numeroDownloads}')">`
                     + aplicativo.id + '</a></td>' +
                     '<td>' + aplicativo.nome + '</td>' +
                     '<td>' + aplicativo.desenvolvedor + '</td>' +
